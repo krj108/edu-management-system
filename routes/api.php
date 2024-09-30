@@ -9,6 +9,8 @@ use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TestController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -53,10 +55,17 @@ Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
 Route::middleware(['auth:sanctum'])->group(function () {
 
 Route::get('/lessons', [LessonController::class, 'index']);  // عرض الدروس
+
+Route::post('/tests', [TestController::class, 'store']);  // إضافة اختبار جديد
+Route::post('/tests/{testId}/questions', [TestController::class, 'addQuestion']);  // إضافة سؤال للاختبار
+
+
 });
 
 
 Route::middleware(['auth:sanctum', 'role:teacher'])->group(function () {
   Route::post('/lessons', [LessonController::class, 'store']); // إضافة درس
 });
+
+
 
