@@ -10,12 +10,12 @@ class CreateTeacherRoomTable extends Migration
     {
         Schema::create('teacher_room', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('teacher_id'); // المدرس
-            $table->unsignedBigInteger('room_id'); // الغرفة
-            $table->unsignedBigInteger('subject_id'); // المادة
+            $table->unsignedBigInteger('teacher_id'); 
+            $table->unsignedBigInteger('room_id'); 
+            $table->unsignedBigInteger('subject_id'); 
             $table->timestamps();
 
-            // الربط مع الجداول الأخرى
+       
             $table->foreign('teacher_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
             $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');

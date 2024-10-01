@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Modules\Admin\Models\Room;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Notifications\Notifiable;
+use Modules\Admin\Models\Subject;
+use Modules\Teacher\Models\Lesson;
+use Modules\Admin\Models\ClassRoom;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
@@ -23,37 +27,31 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // العلاقة بين المدرس والمواد
     public function teacherSubjects()
     {
         return $this->belongsToMany(Subject::class, 'teacher_subject')->withTimestamps();
     }
 
-    // العلاقة بين الطالب والمواد
     public function studentSubjects()
     {
         return $this->belongsToMany(Subject::class, 'student_subject', 'student_id', 'subject_id');
     }
 
-    // العلاقة مع الغرفة عبر المدرس
     public function teacherRooms()
     {
         return $this->belongsToMany(Room::class, 'teacher_room')->withTimestamps();
     }
 
-    // العلاقة مع الصف
     public function classRoom()
     {
         return $this->belongsTo(ClassRoom::class, 'class_id');
     }
 
-    // العلاقة مع الغرفة
     public function room()
     {
         return $this->belongsTo(Room::class, 'room_id');
     }
 
-    // العلاقة مع الدروس
     public function lessons()
     {
         return $this->belongsToMany(Lesson::class, 'student_lesson', 'student_id', 'lesson_id');

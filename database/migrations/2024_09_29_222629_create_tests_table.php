@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('tests', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->foreignId('subject_id')->constrained();  // المادة التي ينتمي إليها الاختبار
-            $table->foreignId('class_id')->constrained();    // الصف الذي ينتمي إليه الاختبار
-            $table->foreignId('room_id')->constrained();     // الغرفة التي ينتمي إليها الاختبار
-            $table->foreignId('teacher_id')->constrained('users');  // المدرس الذي أنشأ الاختبار
-            $table->integer('total_marks');  // العلامة الكاملة للاختبار
-            $table->integer('passing_marks');  // علامة النجاح
+            $table->foreignId('subject_id')->constrained();  
+            $table->foreignId('class_id')->constrained();    
+            $table->foreignId('room_id')->constrained();    
+            $table->foreignId('teacher_id')->constrained('users');  
+            $table->integer('total_marks'); 
+            $table->integer('passing_marks'); 
             $table->timestamps();
         });
         

@@ -30,42 +30,6 @@ use App\Http\Controllers\TestController;
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
-Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
-    // Routes for managing sections
-    Route::post('/sections', [SectionController::class, 'store']);
-
-    // Routes for managing classes
-    Route::post('/classes', [ClassRoomController::class, 'store']);
-    Route::post('/classes/{classId}/rooms', action: [ClassRoomController::class, 'addRoom']);
-
-      // Routes for managing subjects
-      Route::post('/subjects', [SubjectController::class, 'store']); 
-      Route::get('/subjects', [SubjectController::class, 'index']);  
-
-    // Routes for managing teachers
-      Route::post('/teachers', [TeacherController::class, 'store']);
-    Route::get('/teachers', [TeacherController::class, 'index']);
-// Routes for managing students
-    Route::post('/students', [StudentController::class, 'store']);
-    Route::get('/students', [StudentController::class, 'index']);
-
-});
-
-
-Route::middleware(['auth:sanctum'])->group(function () {
-
-Route::get('/lessons', [LessonController::class, 'index']);  // عرض الدروس
-
-Route::post('/tests', [TestController::class, 'store']);  // إضافة اختبار جديد
-Route::post('/tests/{testId}/questions', [TestController::class, 'addQuestion']);  // إضافة سؤال للاختبار
-
-
-});
-
-
-Route::middleware(['auth:sanctum', 'role:teacher'])->group(function () {
-  Route::post('/lessons', [LessonController::class, 'store']); // إضافة درس
-});
 
 
 

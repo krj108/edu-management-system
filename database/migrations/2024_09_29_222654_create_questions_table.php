@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('test_id')->constrained();  // الاختبار الذي ينتمي إليه السؤال
-            $table->string('question_text');  // نص السؤال
-            $table->string('option_a');  // الخيار الأول
-            $table->string('option_b');  // الخيار الثاني
-            $table->string('option_c');  // الخيار الثالث
-            $table->string('option_d');  // الخيار الرابع
-            $table->string('correct_answer');  // الإجابة الصحيحة
-            $table->integer('marks');  // العلامة المخصصة للسؤال
+            $table->foreignId('test_id')->constrained(); 
+            $table->string('question_text');  
+            $table->string('option_a');  
+            $table->string('option_b');  
+            $table->string('option_c');  
+            $table->string('option_d');  
+            $table->string('correct_answer'); 
+            $table->integer('marks'); 
             $table->timestamps();
         });
         

@@ -12,11 +12,11 @@ class CreateLessonsTable extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('subject_id')->constrained()->onDelete('cascade');
-            $table->foreignId('class_id')->constrained('classes')->onDelete('cascade'); // تعديل إلى class_id
+            $table->foreignId('class_id')->constrained('classes')->onDelete('cascade'); 
             $table->foreignId('room_id')->constrained('rooms')->onDelete('cascade');
             $table->text('content');
-            $table->string('pdf')->nullable(); // ملف PDF اختياري
-            $table->string('video')->nullable(); // فيديو اختياري
+            $table->string('pdf')->nullable(); 
+            $table->string('video')->nullable();
             $table->foreignId('teacher_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });

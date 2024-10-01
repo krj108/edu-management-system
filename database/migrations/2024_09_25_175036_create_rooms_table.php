@@ -13,7 +13,7 @@ class CreateRoomsTable extends Migration
             $table->unsignedBigInteger('class_id');
             $table->timestamps();
 
-            // Foreign key linking to classes
+      
             $table->foreign('class_id')->references('id')->on('classes')->onDelete('cascade');
         });
     }
